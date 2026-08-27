@@ -25,7 +25,7 @@ export const profile = {
   fullName: 'Saeed Ahmed Mohamed',
   shortName: 'Saeed',
   title: 'Mobile Developer & Technical Lead',
-  email: 'saidelgnaidy@gmail.com',
+  email: 'saeed.elgnaidy@gmail.com',
   phone: '+20 114 023 0179',
   phoneHref: 'tel:+201140230179',
   location: 'Egypt',
