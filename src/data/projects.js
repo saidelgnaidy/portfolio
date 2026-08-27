@@ -6,7 +6,7 @@ import {
   Bus,
   CreditCard,
   Eye,
-  Fuel,
+  ClipboardCheck,
   ShoppingBag,
   Fingerprint,
   ScanLine,
@@ -16,8 +16,6 @@ import {
   IdCard,
   Files,
   Users,
-  Building2,
-  Dumbbell,
   PawPrint,
 } from 'lucide-react'
 
@@ -173,10 +171,10 @@ export const projects = [
   },
   {
     id: 11,
-    name: 'ADNOC Attend',
+    name: 'BioGo',
     description:
-      'Time & attendance and access control on the IDEMIA ID Screen for Abu Dhabi National Oil Company. Enroll by ID, sync users across tablets, and track sign-in, sign-out, and break intervals.',
-    icon: Fuel,
+      'Time & attendance and access control on the IDEMIA ID Screen. Enroll by ID, sync users across tablets, and track sign-in, sign-out, and break intervals.',
+    icon: ClipboardCheck,
     category: 'Hardware',
     tech: ['Kotlin', 'ID Screen', 'Morpho', 'T&A'],
     gradient: 'from-red-400 to-orange-500',
@@ -271,36 +269,12 @@ export const projects = [
     shadowColor: 'rgba(74, 222, 128, 0.3)',
     company: 'Freelance',
   },
-  {
-    id: 19,
-    name: 'TrainTrack',
-    description:
-      'Coach–athlete platform: training programs, video library, calendar, gym teams, subscriptions, and dual coach/client experiences.',
-    icon: Dumbbell,
-    category: 'Enterprise',
-    tech: ['Flutter', 'Amplify', 'Calendar', 'i18n'],
-    gradient: 'from-orange-400 to-rose-500',
-    shadowColor: 'rgba(251, 146, 60, 0.3)',
-    company: 'Freelance',
-  },
-  {
-    id: 20,
-    name: 'Erad United Apps',
-    description:
-      'Shipped Maa Allah, Ma3een, Sanai3i, The Business Square, and Harvest — Firebase, Google Maps, live chat, and Provider state management across consumer and local-business products.',
-    icon: Building2,
-    category: 'Enterprise',
-    tech: ['Flutter', 'Firebase', 'Maps', 'Provider'],
-    gradient: 'from-cyan-400 to-teal-500',
-    shadowColor: 'rgba(6, 182, 212, 0.3)',
-    company: 'Erad United',
-  },
 ]
 
 export const categories = ['All', 'Biometrics', 'Hardware', 'Identity', 'Enterprise']
 
 export const stats = [
-  { label: 'Apps Delivered', value: '20+' },
+  { label: 'Apps Delivered', value: '18+' },
   { label: 'Years Experience', value: '6+' },
   { label: 'Technologies', value: '25+' },
   { label: 'Clients Served', value: '10+' },
@@ -365,7 +339,7 @@ export const experience = [
     current: true,
     highlights: [
       'Architected Smart Breeder for livestock management: barns, feeds, medical tracking, and statistics',
-      'Built TrainTrack, a coach–athlete platform with programs, video library, and subscriptions',
+      'Delivered smooth UX with animations and clean architecture',
     ],
   },
 ]
