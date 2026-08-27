@@ -6,22 +6,22 @@ const contactLinks = [
   {
     icon: Mail,
     label: 'Email',
-    value: 'saeed@example.com',
-    href: 'mailto:saeed@example.com',
+    value: 'saeed.ahmed@tigrisnet.tech',
+    href: 'mailto:saeed.ahmed@tigrisnet.tech',
     color: 'from-cyan-400 to-blue-500',
   },
   {
     icon: Github,
     label: 'GitHub',
-    value: 'github.com/saeed',
-    href: 'https://github.com/saeed',
+    value: 'github.com/saeed-a7med',
+    href: 'https://github.com/saeed-a7med',
     color: 'from-gray-400 to-gray-500',
   },
   {
     icon: Linkedin,
     label: 'LinkedIn',
-    value: 'linkedin.com/in/saeed',
-    href: 'https://linkedin.com/in/saeed',
+    value: 'linkedin.com/in/saeed-a7med',
+    href: 'https://linkedin.com/in/saeed-a7med',
     color: 'from-blue-400 to-indigo-500',
   },
   {
@@ -116,7 +116,7 @@ export default function Contact() {
           className="text-center"
         >
           <a
-            href="mailto:saeed@example.com"
+            href="mailto:saeed.ahmed@tigrisnet.tech"
             className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-cyan-500 to-violet-500 text-white font-semibold rounded-xl hover:shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 hover:-translate-y-1 text-lg"
           >
             <Send size={20} />

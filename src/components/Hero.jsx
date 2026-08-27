@@ -90,9 +90,9 @@ export default function Hero() {
           className="flex items-center justify-center gap-4"
         >
           {[
-            { icon: Github, href: 'https://github.com/saeed', label: 'GitHub' },
-            { icon: Linkedin, href: 'https://linkedin.com/in/saeed', label: 'LinkedIn' },
-            { icon: Mail, href: 'mailto:saeed@example.com', label: 'Email' },
+            { icon: Github, href: 'https://github.com/saeed-a7med', label: 'GitHub' },
+            { icon: Linkedin, href: 'https://linkedin.com/in/saeed-a7med', label: 'LinkedIn' },
+            { icon: Mail, href: 'mailto:saeed.ahmed@tigrisnet.tech', label: 'Email' },
           ].map((social) => (
             <motion.a
               key={social.label}
