@@ -13,7 +13,7 @@ export function getStoredTheme() {
   } catch {
     /* ignore */
   }
-  return 'light'
+  return 'dark'
 }
 
 export function applyTheme(theme) {
@@ -30,7 +30,7 @@ export function ThemeProvider({ children }) {
   const [theme, setTheme] = useState(() =>
     typeof document !== 'undefined'
       ? document.documentElement.getAttribute('data-theme') || getStoredTheme()
-      : 'light'
+      : 'dark'
   )
 
   useEffect(() => {
