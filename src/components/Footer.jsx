@@ -7,14 +7,14 @@ export default function Footer() {
         <div className="flex items-center gap-2 text-dark-400 text-sm">
           <span>Built with</span>
           <Heart className="text-red-400" size={14} fill="currentColor" />
-          <span>by Saeed</span>
+          <span>by Saeed Ahmed</span>
         </div>
 
         <div className="flex items-center gap-4">
           {[
             { icon: Github, href: 'https://github.com/saidelgnaidy' },
-            { icon: Linkedin, href: 'https://linkedin.com/in/saeed-a7med' },
-            { icon: Mail, href: 'mailto:saeed.ahmed@tigrisnet.tech' },
+            { icon: Linkedin, href: 'https://linkedin.com/in/saidelgnaidy' },
+            { icon: Mail, href: 'mailto:saidelgnaidy@gmail.com' },
           ].map((social, index) => (
             <a
               key={index}

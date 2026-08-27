@@ -1,13 +1,13 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { Mail, Github, Linkedin, MapPin, Send } from 'lucide-react'
+import { Mail, Github, Linkedin, MapPin, Send, Phone, ExternalLink } from 'lucide-react'
 
 const contactLinks = [
   {
     icon: Mail,
     label: 'Email',
-    value: 'saeed.ahmed@tigrisnet.tech',
-    href: 'mailto:saeed.ahmed@tigrisnet.tech',
+    value: 'saidelgnaidy@gmail.com',
+    href: 'mailto:saidelgnaidy@gmail.com',
     color: 'from-cyan-400 to-blue-500',
   },
   {
@@ -25,11 +25,25 @@ const contactLinks = [
     color: 'from-blue-400 to-indigo-500',
   },
   {
+    icon: ExternalLink,
+    label: 'Online CV',
+    value: 'cvrest.com/cv/saidelgnaidy',
+    href: 'http://cvrest.com/cv/saidelgnaidy',
+    color: 'from-violet-400 to-purple-500',
+  },
+  {
+    icon: Phone,
+    label: 'Phone',
+    value: '+20 114 023 0179',
+    href: 'tel:+201140230179',
+    color: 'from-emerald-400 to-teal-500',
+  },
+  {
     icon: MapPin,
     label: 'Location',
-    value: 'Abu Dhabi, UAE',
+    value: 'Egypt',
     href: null,
-    color: 'from-emerald-400 to-teal-500',
+    color: 'from-amber-400 to-orange-500',
   },
 ]
 
@@ -66,7 +80,7 @@ export default function Contact() {
         </motion.div>
 
         {/* Contact cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
           {contactLinks.map((contact, index) => (
             <motion.div
               key={contact.label}
@@ -77,30 +91,30 @@ export default function Contact() {
               {contact.href ? (
                 <a
                   href={contact.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="glass-card gradient-border rounded-2xl p-6 flex items-center gap-4 group hover:scale-[1.02] transition-all duration-300 block"
+                  target={contact.href.startsWith('http') ? '_blank' : undefined}
+                  rel={contact.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  className="glass-card gradient-border rounded-2xl p-5 flex items-center gap-4 group hover:scale-[1.02] transition-all duration-300 block h-full"
                 >
-                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${contact.color} p-0.5 flex-shrink-0`}>
+                  <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${contact.color} p-0.5 flex-shrink-0`}>
                     <div className="w-full h-full rounded-[10px] bg-dark-900 flex items-center justify-center">
-                      <contact.icon className="text-white" size={20} />
+                      <contact.icon className="text-white" size={18} />
                     </div>
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <p className="text-xs text-dark-400 font-medium uppercase tracking-wider">{contact.label}</p>
-                    <p className="text-white font-medium group-hover:text-cyan-300 transition-colors">{contact.value}</p>
+                    <p className="text-white text-sm font-medium group-hover:text-cyan-300 transition-colors truncate">{contact.value}</p>
                   </div>
                 </a>
               ) : (
-                <div className="glass-card gradient-border rounded-2xl p-6 flex items-center gap-4">
-                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${contact.color} p-0.5 flex-shrink-0`}>
+                <div className="glass-card gradient-border rounded-2xl p-5 flex items-center gap-4 h-full">
+                  <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${contact.color} p-0.5 flex-shrink-0`}>
                     <div className="w-full h-full rounded-[10px] bg-dark-900 flex items-center justify-center">
-                      <contact.icon className="text-white" size={20} />
+                      <contact.icon className="text-white" size={18} />
                     </div>
                   </div>
                   <div>
                     <p className="text-xs text-dark-400 font-medium uppercase tracking-wider">{contact.label}</p>
-                    <p className="text-white font-medium">{contact.value}</p>
+                    <p className="text-white text-sm font-medium">{contact.value}</p>
                   </div>
                 </div>
               )}
@@ -116,7 +130,7 @@ export default function Contact() {
           className="text-center"
         >
           <a
-            href="mailto:saeed.ahmed@tigrisnet.tech"
+            href="mailto:saidelgnaidy@gmail.com"
             className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-cyan-500 to-violet-500 text-white font-semibold rounded-xl hover:shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 hover:-translate-y-1 text-lg"
           >
             <Send size={20} />

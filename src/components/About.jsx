@@ -1,29 +1,29 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { stats, skills } from '../data/projects'
-import { Code2, Smartphone, Shield, Zap } from 'lucide-react'
+import { stats, skills, experience } from '../data/projects'
+import { Code2, Smartphone, Shield, Zap, Briefcase, MapPin, GraduationCap } from 'lucide-react'
 
 const highlights = [
   {
     icon: Smartphone,
-    title: 'Native Android',
-    description: 'Expert in Kotlin, Jetpack Compose, and the full Android SDK ecosystem.',
+    title: 'Flutter & Native Android',
+    description: 'Expert in Flutter, Dart, Kotlin, Java, Jetpack Compose, and the full mobile SDK ecosystem.',
   },
   {
     icon: Shield,
-    title: 'Biometric Systems',
-    description: 'Specialized in liveness detection, face matching, and eKYC solutions.',
-  },
-  {
-    icon: Code2,
-    title: 'Clean Architecture',
-    description: 'MVVM, Hilt DI, Coroutines/Flow, and industry best practices.',
+    title: 'Biometric & eKYC',
+    description: 'Face recognition, OCR, liveness detection, and Morpho/ID Screen device integration.',
   },
   {
     icon: Zap,
-    title: 'Enterprise Grade',
-    description: 'Building scalable solutions for ADNOC, government, and private sector.',
+    title: 'Hardware Integration',
+    description: 'BLE, NFC (MIFARE/DESFire), POS systems, fingerprint tablets, and attendance hardware.',
+  },
+  {
+    icon: Code2,
+    title: 'Architecture & Leadership',
+    description: 'MVVM, Clean Architecture, Bloc/GetX, CI/CD, team mentoring, and agile methodologies.',
   },
 ]
 
@@ -52,9 +52,11 @@ export default function About() {
             Turning Ideas into{' '}
             <span className="gradient-text">Powerful Apps</span>
           </h2>
-          <p className="text-dark-300 max-w-2xl mx-auto text-lg leading-relaxed">
-            A passionate Android developer with 5+ years of experience building production-grade
-            mobile applications across biometrics, enterprise, and public service domains.
+          <p className="text-dark-300 max-w-3xl mx-auto text-lg leading-relaxed">
+            Mobile Developer and Team Leader with 6+ years of experience designing and building
+            advanced mobile applications using Flutter, Dart, and native Android. Expert in
+            integrating complex hardware systems including BLE, NFC, biometric devices, and POS systems.
+            Deep understanding of AI-enhanced systems such as face recognition and OCR for eKYC.
           </p>
         </motion.div>
 
@@ -99,11 +101,84 @@ export default function About() {
           ))}
         </div>
 
+        {/* Experience Timeline */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="glass-card rounded-2xl p-8 mb-16"
+        >
+          <div className="flex items-center gap-3 mb-8">
+            <Briefcase className="text-cyan-400" size={24} />
+            <h3 className="text-xl font-bold text-white">Experience</h3>
+          </div>
+          <div className="relative">
+            {/* Timeline line */}
+            <div className="absolute left-[7px] top-2 bottom-2 w-px bg-gradient-to-b from-cyan-500/50 via-violet-500/30 to-transparent" />
+
+            <div className="space-y-8">
+              {experience.map((exp, index) => (
+                <motion.div
+                  key={exp.company + exp.period}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.6 + index * 0.15 }}
+                  className="relative pl-8"
+                >
+                  {/* Timeline dot */}
+                  <div className={`absolute left-0 top-1.5 w-[15px] h-[15px] rounded-full border-2 ${
+                    exp.current
+                      ? 'border-cyan-400 bg-cyan-400/20'
+                      : 'border-dark-500 bg-dark-800'
+                  }`} />
+
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-2">
+                    <div>
+                      <h4 className="text-white font-semibold text-lg">{exp.company}</h4>
+                      <p className="text-cyan-400 text-sm font-medium">{exp.role}</p>
+                    </div>
+                    <div className="flex items-center gap-3 text-sm text-dark-400">
+                      <span className="font-mono">{exp.period}</span>
+                      <span className="inline-flex items-center gap-1">
+                        <MapPin size={12} />
+                        {exp.location}
+                      </span>
+                    </div>
+                  </div>
+                  <ul className="space-y-1.5 mt-2">
+                    {exp.highlights.map((h, i) => (
+                      <li key={i} className="text-sm text-dark-400 leading-relaxed flex gap-2">
+                        <span className="text-dark-600 mt-1 flex-shrink-0">&#9656;</span>
+                        {h}
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Education */}
+          <div className="mt-8 pt-6 border-t border-dark-700/50">
+            <div className="flex items-center gap-3 mb-3">
+              <GraduationCap className="text-violet-400" size={20} />
+              <h4 className="text-white font-semibold">Education</h4>
+            </div>
+            <p className="text-dark-300 text-sm pl-8">
+              <span className="font-medium text-dark-200">Faculty of Computer and Information Systems</span>
+              <span className="text-dark-500"> — </span>
+              Zagazig University, Egypt
+              <span className="text-dark-500"> | </span>
+              <span className="font-mono text-dark-400">2016 – 2020</span>
+            </p>
+          </div>
+        </motion.div>
+
         {/* Skills */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.6 }}
+          transition={{ duration: 0.6, delay: 0.7 }}
           className="glass-card rounded-2xl p-8"
         >
           <h3 className="text-xl font-bold text-white mb-6">Technical Skills</h3>

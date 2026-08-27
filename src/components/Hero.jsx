@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ChevronDown, Github, Linkedin, Mail } from 'lucide-react'
+import { ChevronDown, Github, Linkedin, Mail, ExternalLink } from 'lucide-react'
 
 export default function Hero() {
   return (
@@ -51,12 +51,14 @@ export default function Hero() {
           className="mb-8"
         >
           <p className="text-xl sm:text-2xl md:text-3xl text-dark-300 font-light">
-            Mobile App Developer
+            Mobile Developer & Technical Lead
           </p>
           <p className="text-base sm:text-lg text-dark-400 mt-3 max-w-2xl mx-auto leading-relaxed">
-            Crafting high-performance <span className="text-cyan-400">Android</span> applications
-            with expertise in <span className="text-violet-400">biometric systems</span>,{' '}
-            <span className="text-pink-400">enterprise solutions</span>, and cutting-edge mobile technologies.
+            6+ years crafting production-grade <span className="text-cyan-400">Flutter</span> &{' '}
+            <span className="text-cyan-400">Android</span> apps with expertise in{' '}
+            <span className="text-violet-400">biometric systems</span>,{' '}
+            <span className="text-pink-400">hardware integration</span> (BLE, NFC, POS), and{' '}
+            <span className="text-emerald-400">AI-powered eKYC</span> solutions.
           </p>
         </motion.div>
 
@@ -75,10 +77,13 @@ export default function Hero() {
             <span className="inline-block ml-2 transition-transform group-hover:translate-x-1">&rarr;</span>
           </a>
           <a
-            href="#contact"
-            className="px-8 py-4 border border-dark-600 text-dark-200 font-semibold rounded-xl hover:border-dark-400 hover:text-white hover:bg-white/5 transition-all duration-300 hover:-translate-y-1"
+            href="http://cvrest.com/cv/saidelgnaidy"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-8 py-4 border border-dark-600 text-dark-200 font-semibold rounded-xl hover:border-dark-400 hover:text-white hover:bg-white/5 transition-all duration-300 hover:-translate-y-1"
           >
-            Get in Touch
+            <ExternalLink size={18} />
+            View My CV
           </a>
         </motion.div>
 
@@ -92,7 +97,7 @@ export default function Hero() {
           {[
             { icon: Github, href: 'https://github.com/saidelgnaidy', label: 'GitHub' },
             { icon: Linkedin, href: 'https://linkedin.com/in/saidelgnaidy', label: 'LinkedIn' },
-            { icon: Mail, href: 'mailto:saeed.ahmed@tigrisnet.tech', label: 'Email' },
+            { icon: Mail, href: 'mailto:saidelgnaidy@gmail.com', label: 'Email' },
           ].map((social) => (
             <motion.a
               key={social.label}
