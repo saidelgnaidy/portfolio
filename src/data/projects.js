@@ -16,6 +16,8 @@ import {
   BrainCircuit,
 } from 'lucide-react'
 
+import { projectDetails } from './projectDetails'
+
 export const cvPath = `${import.meta.env.BASE_URL}cv.pdf`
 
 const asset = (path) => `${import.meta.env.BASE_URL}${path}`
@@ -182,6 +184,7 @@ export const projects = [
     shadowColor: "rgba(6, 182, 212, 0.3)",
     company: "Arana Security",
     images: biowaveImages,
+    details: projectDetails.biowave,
     links: {
       playStore:
         "https://play.google.com/store/apps/details?id=com.aranasecurity.biowave",
@@ -200,6 +203,7 @@ export const projects = [
     shadowColor: "rgba(16, 185, 129, 0.3)",
     company: "Arana Security",
     images: bioboxImages,
+    details: projectDetails.biobox,
   },
   {
     id: 10,
@@ -213,6 +217,7 @@ export const projects = [
     shadowColor: "rgba(59, 130, 246, 0.3)",
     company: "Arana Security",
     images: bluaccessImages,
+    details: projectDetails.bluaccess,
   },
   {
     id: 11,
@@ -226,6 +231,7 @@ export const projects = [
     shadowColor: "rgba(239, 68, 68, 0.3)",
     company: "Arana Security",
     images: biogoImages,
+    details: projectDetails.biogo,
   },
   {
     id: 1,
@@ -239,6 +245,7 @@ export const projects = [
     shadowColor: "rgba(139, 92, 246, 0.3)",
     company: "Arana Security",
     images: ekycImages,
+    details: projectDetails.ekyc,
     links: aranaStores,
   },
 
@@ -254,6 +261,7 @@ export const projects = [
     shadowColor: "rgba(20, 184, 166, 0.3)",
     company: "Arana Security",
     images: livenessImages,
+    details: projectDetails.liveness,
   },
   {
     id: 8,
@@ -267,6 +275,7 @@ export const projects = [
     shadowColor: "rgba(249, 115, 22, 0.3)",
     company: "Arana Security",
     images: biowave2faImages,
+    details: projectDetails.biowave2fa,
   },
   {
     id: 20,
@@ -280,6 +289,7 @@ export const projects = [
     shadowColor: "rgba(139, 92, 246, 0.35)",
     company: "Freelance",
     images: devevalImages,
+    details: projectDetails.deveval,
   },
   {
     id: 19,
@@ -293,6 +303,7 @@ export const projects = [
     shadowColor: "rgba(16, 185, 129, 0.35)",
     company: "Freelance",
     images: apppulseImages,
+    details: projectDetails.apppulse,
   },
   {
     id: 4,
@@ -306,6 +317,7 @@ export const projects = [
     shadowColor: "rgba(34, 197, 94, 0.3)",
     company: "Arana Security",
     images: greenzoneImages,
+    details: projectDetails.greenzone,
   },
   {
     id: 14,
@@ -319,6 +331,7 @@ export const projects = [
     shadowColor: "rgba(245, 158, 11, 0.3)",
     company: "Arana Security",
     images: alnoorImages,
+    details: projectDetails.alnoor,
   },
   {
     id: 15,
@@ -332,6 +345,7 @@ export const projects = [
     shadowColor: "rgba(99, 102, 241, 0.3)",
     company: "Arana Security",
     images: alreemImages,
+    details: projectDetails.alreem,
   },
   {
     id: 16,
@@ -345,6 +359,7 @@ export const projects = [
     shadowColor: "rgba(100, 116, 139, 0.3)",
     company: "Arana Security",
     images: aranaIdentityImages,
+    details: projectDetails.identity,
   },
   {
     id: 17,
@@ -358,6 +373,7 @@ export const projects = [
     shadowColor: "rgba(244, 63, 94, 0.3)",
     company: "ForAll.FA",
     images: forallImages,
+    details: projectDetails.forall,
     links: {
       playStore:
         "https://play.google.com/store/apps/dev?id=7695761114305611998",
@@ -376,6 +392,7 @@ export const projects = [
     shadowColor: "rgba(14, 165, 233, 0.3)",
     company: "Arana Security",
     images: rapididImages,
+    details: projectDetails.rapidid,
   },
 ];
 

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { ChevronLeft, ChevronRight, X } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Lightbulb, ListChecks, Sparkles, Wrench, X } from 'lucide-react'
 
 const PlayStoreIcon = () => (
   <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4" aria-hidden="true">
@@ -16,6 +16,7 @@ const AppStoreIcon = () => (
 
 export default function ProjectDialog({ project, onClose }) {
   const images = project.images || []
+  const details = project.details
   const Icon = project.icon
   const [index, setIndex] = useState(0)
   const closeRef = useRef(null)
@@ -94,7 +95,7 @@ export default function ProjectDialog({ project, onClose }) {
           </button>
         </div>
 
-        <div className="grid min-h-0 flex-1 overflow-y-auto lg:grid-cols-[1.4fr_1fr]">
+        <div className="grid min-h-0 flex-1 overflow-y-auto lg:grid-cols-[1.15fr_1fr] lg:overflow-hidden">
           <div className="bg-ink">
             {images.length > 0 ? (
               <div className="flex flex-col">
@@ -158,7 +159,7 @@ export default function ProjectDialog({ project, onClose }) {
             )}
           </div>
 
-          <div className="flex flex-col gap-5 p-5 sm:p-6">
+          <div className="flex flex-col gap-6 overflow-y-auto p-5 sm:p-6 lg:min-h-0">
             <div className="flex flex-wrap gap-2">
               <span className="rounded-full border border-dark-700/50 bg-dark-800 px-3 py-1 text-xs font-medium text-dark-300">
                 {project.category}
@@ -170,25 +171,106 @@ export default function ProjectDialog({ project, onClose }) {
               )}
             </div>
 
-            <p className="text-sm leading-relaxed text-dark-300 sm:text-base">
-              {project.description}
-            </p>
+            {details ? (
+              <>
+                {details.tagline && (
+                  <p className="text-base font-medium leading-snug text-fg sm:text-lg">
+                    {details.tagline}
+                  </p>
+                )}
 
-            <div>
-              <h3 className="mb-2 text-xs font-mono uppercase tracking-wider text-dark-400">
-                Tech stack
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {project.tech.map((tech) => (
-                  <span
-                    key={tech}
-                    className="rounded-md border border-dark-700/30 bg-dark-800/80 px-2.5 py-1 font-mono text-xs text-dark-200"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
+                <section>
+                  <h3 className="mb-2 flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-cyan-400">
+                    <Sparkles size={14} />
+                    Overview
+                  </h3>
+                  <p className="text-sm leading-relaxed text-dark-300">
+                    {details.overview}
+                  </p>
+                </section>
+
+                {details.features?.length > 0 && (
+                  <section>
+                    <h3 className="mb-3 flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-cyan-400">
+                      <ListChecks size={14} />
+                      Key Features
+                    </h3>
+                    <ul className="space-y-3">
+                      {details.features.map((feature) => (
+                        <li key={feature.title}>
+                          <p className="text-sm font-semibold text-fg">{feature.title}</p>
+                          <p className="mt-0.5 text-sm leading-relaxed text-dark-300">
+                            {feature.text}
+                          </p>
+                        </li>
+                      ))}
+                    </ul>
+                  </section>
+                )}
+
+                {details.stack?.length > 0 && (
+                  <section>
+                    <h3 className="mb-3 flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-cyan-400">
+                      <Wrench size={14} />
+                      Tech Stack
+                    </h3>
+                    <dl className="space-y-2">
+                      {details.stack.map((item) => (
+                        <div key={item.label}>
+                          <dt className="font-mono text-[11px] uppercase tracking-wider text-dark-400">
+                            {item.label}
+                          </dt>
+                          <dd className="text-sm text-dark-200">{item.text}</dd>
+                        </div>
+                      ))}
+                    </dl>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {project.tech.map((tech) => (
+                        <span
+                          key={tech}
+                          className="rounded-md border border-dark-700/30 bg-dark-800/80 px-2.5 py-1 font-mono text-xs text-dark-200"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </section>
+                )}
+
+                {details.impact && (
+                  <section>
+                    <h3 className="mb-2 flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-cyan-400">
+                      <Lightbulb size={14} />
+                      The Impact
+                    </h3>
+                    <p className="text-sm leading-relaxed text-dark-300">
+                      {details.impact}
+                    </p>
+                  </section>
+                )}
+              </>
+            ) : (
+              <>
+                <p className="text-sm leading-relaxed text-dark-300 sm:text-base">
+                  {project.description}
+                </p>
+                <div>
+                  <h3 className="mb-2 text-xs font-mono uppercase tracking-wider text-dark-400">
+                    Tech stack
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {project.tech.map((tech) => (
+                      <span
+                        key={tech}
+                        className="rounded-md border border-dark-700/30 bg-dark-800/80 px-2.5 py-1 font-mono text-xs text-dark-200"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </>
+            )}
 
             {project.links && (
               <div className="mt-auto flex flex-wrap gap-2 border-t border-dark-700/30 pt-4">
