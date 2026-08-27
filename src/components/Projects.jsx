@@ -21,7 +21,6 @@ export default function Projects() {
   return (
     <section id="projects" className="relative py-24 sm:py-32 px-4" ref={ref}>
       <div className="max-w-7xl mx-auto">
-        {/* Section header */}
         <motion.div
           variants={fadeInUp}
           initial="hidden"
@@ -37,22 +36,26 @@ export default function Projects() {
             <span className="gradient-text">Projects</span>
           </h2>
           <p className="text-dark-300 max-w-2xl mx-auto text-lg">
-            A showcase of 11+ production applications spanning biometric security,
-            enterprise solutions, and public service platforms.
+            {projects.length} production apps spanning biometric security, hardware
+            integration, identity platforms, and enterprise products.
           </p>
         </motion.div>
 
-        {/* Category filters */}
         <motion.div
           variants={fadeInUp}
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="flex flex-wrap justify-center gap-2 mb-12"
+          role="tablist"
+          aria-label="Filter projects by category"
         >
           {categories.map((category) => (
             <button
               key={category}
+              type="button"
+              role="tab"
+              aria-selected={activeCategory === category}
               onClick={() => setActiveCategory(category)}
               className={`px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 ${
                 activeCategory === category
@@ -61,16 +64,17 @@ export default function Projects() {
               }`}
             >
               {category}
-              {category !== 'All' && (
-                <span className="ml-2 text-xs opacity-60">
-                  ({projects.filter((p) => p.category === category).length})
-                </span>
-              )}
+              <span className="ml-2 text-xs opacity-60">
+                (
+                {category === 'All'
+                  ? projects.length
+                  : projects.filter((p) => p.category === category).length}
+                )
+              </span>
             </button>
           ))}
         </motion.div>
 
-        {/* Projects grid */}
         <motion.div
           layout
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"

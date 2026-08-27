@@ -1,29 +1,29 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { stats, skills, experience } from '../data/projects'
-import { Code2, Smartphone, Shield, Zap, Briefcase, MapPin, GraduationCap } from 'lucide-react'
+import { stats, skills, experience, profile } from '../data/projects'
+import { Code2, Smartphone, Shield, Zap, Briefcase, MapPin, GraduationCap, Languages } from 'lucide-react'
 
 const highlights = [
   {
     icon: Smartphone,
     title: 'Flutter & Native Android',
-    description: 'Expert in Flutter, Dart, Kotlin, Java, Jetpack Compose, and the full mobile SDK ecosystem.',
+    description: 'Flutter, Dart, Kotlin, Java, Jetpack Compose, and the full mobile SDK stack — including Shorebird code push and Mason bricks.',
   },
   {
     icon: Shield,
     title: 'Biometric & eKYC',
-    description: 'Face recognition, OCR, liveness detection, and Morpho/ID Screen device integration.',
+    description: 'NFC passports, face matching, liveness, OCR/MRZ, and IDEMIA Morpho / ID Screen integration for government-grade identity.',
   },
   {
     icon: Zap,
     title: 'Hardware Integration',
-    description: 'BLE, NFC (MIFARE/DESFire), POS systems, fingerprint tablets, and attendance hardware.',
+    description: 'BLE, NFC (MIFARE/DESFire), POS, fingerprint tablets, BioBox enrollment kits, and attendance hardware.',
   },
   {
     icon: Code2,
     title: 'Architecture & Leadership',
-    description: 'MVVM, Clean Architecture, Bloc/GetX, CI/CD, team mentoring, and agile methodologies.',
+    description: 'MVVM, Clean Architecture, Bloc/GetX, CI/CD, firmware/SDK validation with vendors, mentoring, and agile delivery.',
   },
 ]
 
@@ -39,7 +39,6 @@ export default function About() {
   return (
     <section id="about" className="relative py-24 sm:py-32 px-4" ref={ref}>
       <div className="max-w-7xl mx-auto">
-        {/* Section header */}
         <motion.div
           variants={fadeInUp}
           initial="hidden"
@@ -53,14 +52,14 @@ export default function About() {
             <span className="gradient-text">Powerful Apps</span>
           </h2>
           <p className="text-dark-300 max-w-3xl mx-auto text-lg leading-relaxed">
-            Mobile Developer and Team Leader with 6+ years of experience designing and building
-            advanced mobile applications using Flutter, Dart, and native Android. Expert in
-            integrating complex hardware systems including BLE, NFC, biometric devices, and POS systems.
-            Deep understanding of AI-enhanced systems such as face recognition and OCR for eKYC.
+            {profile.fullName} — mobile developer and team leader with 6+ years designing
+            advanced apps in Flutter, Dart, and native Android (Kotlin, Java, Jetpack Compose).
+            Expert at integrating BLE, NFC, biometric devices, and POS hardware, with deep
+            experience in face recognition and OCR for eKYC. Strong on scalable architecture,
+            performance, mentoring, and agile delivery.
           </p>
         </motion.div>
 
-        {/* Stats */}
         <motion.div
           variants={fadeInUp}
           initial="hidden"
@@ -82,7 +81,6 @@ export default function About() {
           ))}
         </motion.div>
 
-        {/* Highlight cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
           {highlights.map((item, index) => (
             <motion.div
@@ -101,7 +99,6 @@ export default function About() {
           ))}
         </div>
 
-        {/* Experience Timeline */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -113,7 +110,6 @@ export default function About() {
             <h3 className="text-xl font-bold text-white">Experience</h3>
           </div>
           <div className="relative">
-            {/* Timeline line */}
             <div className="absolute left-[7px] top-2 bottom-2 w-px bg-gradient-to-b from-cyan-500/50 via-violet-500/30 to-transparent" />
 
             <div className="space-y-8">
@@ -125,7 +121,6 @@ export default function About() {
                   transition={{ duration: 0.5, delay: 0.6 + index * 0.15 }}
                   className="relative pl-8"
                 >
-                  {/* Timeline dot */}
                   <div className={`absolute left-0 top-1.5 w-[15px] h-[15px] rounded-full border-2 ${
                     exp.current
                       ? 'border-cyan-400 bg-cyan-400/20'
@@ -158,23 +153,40 @@ export default function About() {
             </div>
           </div>
 
-          {/* Education */}
-          <div className="mt-8 pt-6 border-t border-dark-700/50">
-            <div className="flex items-center gap-3 mb-3">
-              <GraduationCap className="text-violet-400" size={20} />
-              <h4 className="text-white font-semibold">Education</h4>
+          <div className="mt-8 pt-6 border-t border-dark-700/50 grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <div className="flex items-center gap-3 mb-3">
+                <GraduationCap className="text-violet-400" size={20} />
+                <h4 className="text-white font-semibold">Education</h4>
+              </div>
+              <p className="text-dark-300 text-sm pl-8">
+                <span className="font-medium text-dark-200">Faculty of Computer and Information Systems</span>
+                <span className="text-dark-500"> — </span>
+                Zagazig University, Egypt
+                <span className="text-dark-500"> | </span>
+                <span className="font-mono text-dark-400">2016 – 2020</span>
+              </p>
             </div>
-            <p className="text-dark-300 text-sm pl-8">
-              <span className="font-medium text-dark-200">Faculty of Computer and Information Systems</span>
-              <span className="text-dark-500"> — </span>
-              Zagazig University, Egypt
-              <span className="text-dark-500"> | </span>
-              <span className="font-mono text-dark-400">2016 – 2020</span>
-            </p>
+            <div>
+              <div className="flex items-center gap-3 mb-3">
+                <Languages className="text-cyan-400" size={20} />
+                <h4 className="text-white font-semibold">Languages</h4>
+              </div>
+              <p className="text-dark-300 text-sm pl-8">
+                {profile.languages.map((lang, i) => (
+                  <span key={lang.name}>
+                    <span className="font-medium text-dark-200">{lang.name}</span>
+                    <span className="text-dark-500"> ({lang.level})</span>
+                    {i < profile.languages.length - 1 && (
+                      <span className="text-dark-600"> · </span>
+                    )}
+                  </span>
+                ))}
+              </p>
+            </div>
           </div>
         </motion.div>
 
-        {/* Skills */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}

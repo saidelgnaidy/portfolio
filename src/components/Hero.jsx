@@ -1,24 +1,24 @@
-import { motion } from 'framer-motion'
-import { ChevronDown, Github, Linkedin, Mail, ExternalLink } from 'lucide-react'
+import { motion, useReducedMotion } from 'framer-motion'
+import { ChevronDown, Github, Linkedin, Mail, FileDown } from 'lucide-react'
+import { cvPath, profile } from '../data/projects'
 
 export default function Hero() {
+  const reduceMotion = useReducedMotion()
+
   return (
     <section
       id="home"
       className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden"
     >
-      {/* Animated gradient orbs */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute -top-40 -left-40 w-80 h-80 bg-cyan-500/20 rounded-full blur-[100px] animate-float" />
         <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-violet-500/20 rounded-full blur-[100px] animate-float-delayed" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-[120px] animate-float-slow" />
       </div>
 
-      {/* Grid pattern overlay */}
       <div className="absolute inset-0 grid-pattern opacity-50" />
 
       <div className="relative z-10 text-center max-w-5xl mx-auto">
-        {/* Status badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -32,7 +32,6 @@ export default function Hero() {
           <span className="text-sm text-cyan-300 font-medium">Available for new projects</span>
         </motion.div>
 
-        {/* Main heading */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -40,10 +39,9 @@ export default function Hero() {
           className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight mb-6"
         >
           <span className="text-white">Hi, I'm </span>
-          <span className="gradient-text">Saeed</span>
+          <span className="gradient-text">{profile.shortName}</span>
         </motion.h1>
 
-        {/* Subtitle */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -51,18 +49,18 @@ export default function Hero() {
           className="mb-8"
         >
           <p className="text-xl sm:text-2xl md:text-3xl text-dark-300 font-light">
-            Mobile Developer & Technical Lead
+            {profile.title}
           </p>
           <p className="text-base sm:text-lg text-dark-400 mt-3 max-w-2xl mx-auto leading-relaxed">
-            6+ years crafting production-grade <span className="text-cyan-400">Flutter</span> &{' '}
-            <span className="text-cyan-400">Android</span> apps with expertise in{' '}
-            <span className="text-violet-400">biometric systems</span>,{' '}
-            <span className="text-pink-400">hardware integration</span> (BLE, NFC, POS), and{' '}
-            <span className="text-emerald-400">AI-powered eKYC</span> solutions.
+            6+ years shipping production <span className="text-cyan-400">Flutter</span> &{' '}
+            <span className="text-cyan-400">native Android</span> apps —{' '}
+            <span className="text-violet-400">biometrics & eKYC</span>,{' '}
+            <span className="text-pink-400">IDEMIA / Morpho hardware</span> (BLE, NFC, POS),
+            and <span className="text-emerald-400">identity platforms</span> for government and
+            enterprise.
           </p>
         </motion.div>
 
-        {/* CTA Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -77,17 +75,16 @@ export default function Hero() {
             <span className="inline-block ml-2 transition-transform group-hover:translate-x-1">&rarr;</span>
           </a>
           <a
-            href="http://cvrest.com/cv/saidelgnaidy"
+            href={cvPath}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 border border-dark-600 text-dark-200 font-semibold rounded-xl hover:border-dark-400 hover:text-white hover:bg-white/5 transition-all duration-300 hover:-translate-y-1"
           >
-            <ExternalLink size={18} />
-            View My CV
+            <FileDown size={18} />
+            Download CV
           </a>
         </motion.div>
 
-        {/* Social Links */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -95,15 +92,15 @@ export default function Hero() {
           className="flex items-center justify-center gap-4"
         >
           {[
-            { icon: Github, href: 'https://github.com/saidelgnaidy', label: 'GitHub' },
-            { icon: Linkedin, href: 'https://linkedin.com/in/saidelgnaidy', label: 'LinkedIn' },
-            { icon: Mail, href: 'mailto:saidelgnaidy@gmail.com', label: 'Email' },
+            { icon: Github, href: profile.github, label: 'GitHub', external: true },
+            { icon: Linkedin, href: profile.linkedin, label: 'LinkedIn', external: true },
+            { icon: Mail, href: `mailto:${profile.email}`, label: 'Email', external: false },
           ].map((social) => (
             <motion.a
               key={social.label}
               href={social.href}
-              target="_blank"
-              rel="noopener noreferrer"
+              target={social.external ? '_blank' : undefined}
+              rel={social.external ? 'noopener noreferrer' : undefined}
               className="p-3 rounded-xl border border-dark-700 text-dark-400 hover:text-white hover:border-dark-500 hover:bg-white/5 transition-all duration-300"
               whileHover={{ y: -3, scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -115,15 +112,15 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        aria-hidden="true"
       >
         <motion.div
-          animate={{ y: [0, 8, 0] }}
+          animate={reduceMotion ? undefined : { y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
         >
           <ChevronDown className="text-dark-500" size={24} />

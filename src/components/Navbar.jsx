@@ -15,7 +15,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50)
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
@@ -32,7 +32,6 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
-          {/* Logo */}
           <motion.a
             href="#home"
             className="text-xl sm:text-2xl font-bold font-mono"
@@ -44,7 +43,6 @@ export default function Navbar() {
             <span className="text-violet-400">/&gt;</span>
           </motion.a>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
               <motion.a
@@ -67,25 +65,28 @@ export default function Navbar() {
             </motion.a>
           </div>
 
-          {/* Mobile Menu Toggle */}
           <button
+            type="button"
             className="md:hidden p-2 text-dark-300 hover:text-white transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-menu"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
+            id="mobile-menu"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-dark-900/95 backdrop-blur-xl border-b border-white/5"
+            className="md:hidden bg-dark-900/95 backdrop-blur-xl border-b border-white/5 overflow-hidden"
           >
             <div className="px-4 py-4 space-y-1">
               {navLinks.map((link) => (

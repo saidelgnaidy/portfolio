@@ -1,4 +1,5 @@
 import { Github, Linkedin, Mail, Heart } from 'lucide-react'
+import { profile } from '../data/projects'
 
 export default function Footer() {
   return (
@@ -7,20 +8,21 @@ export default function Footer() {
         <div className="flex items-center gap-2 text-dark-400 text-sm">
           <span>Built with</span>
           <Heart className="text-red-400" size={14} fill="currentColor" />
-          <span>by Saeed Ahmed</span>
+          <span>by {profile.fullName}</span>
         </div>
 
         <div className="flex items-center gap-4">
           {[
-            { icon: Github, href: 'https://github.com/saidelgnaidy' },
-            { icon: Linkedin, href: 'https://linkedin.com/in/saidelgnaidy' },
-            { icon: Mail, href: 'mailto:saidelgnaidy@gmail.com' },
-          ].map((social, index) => (
+            { icon: Github, href: profile.github, label: 'GitHub', external: true },
+            { icon: Linkedin, href: profile.linkedin, label: 'LinkedIn', external: true },
+            { icon: Mail, href: `mailto:${profile.email}`, label: 'Email', external: false },
+          ].map((social) => (
             <a
-              key={index}
+              key={social.label}
               href={social.href}
-              target="_blank"
-              rel="noopener noreferrer"
+              target={social.external ? '_blank' : undefined}
+              rel={social.external ? 'noopener noreferrer' : undefined}
+              aria-label={social.label}
               className="text-dark-500 hover:text-white transition-colors duration-300"
             >
               <social.icon size={18} />
