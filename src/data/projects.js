@@ -4,22 +4,148 @@ import {
   ShieldCheck,
   KeyRound,
   Bus,
-  CreditCard,
   Eye,
   ClipboardCheck,
   ShoppingBag,
   Fingerprint,
   ScanLine,
-  FileText,
   Nfc,
   Wallet,
   IdCard,
-  Files,
-  Users,
-  PawPrint,
+  LayoutDashboard,
+  BrainCircuit,
 } from 'lucide-react'
 
 export const cvPath = `${import.meta.env.BASE_URL}cv.pdf`
+
+const asset = (path) => `${import.meta.env.BASE_URL}${path}`
+
+const gallery = (folder, files) =>
+  files.map((file) => asset(`projects/${folder}/${file}`))
+
+const biowaveImages = gallery('biowave', [
+  'onboarding-1.png',
+  'onboarding-2.png',
+  'onboarding-3.png',
+  'registration.png',
+  'notifications.png',
+  'reports.png',
+  'reports-detail.png',
+  'splash.png',
+])
+
+const bioboxImages = gallery('biobox', [
+  'home.png',
+  'record-list.png',
+  'face.png',
+  'fingerprint.png',
+  'iris.png',
+  'document.png',
+  'voice.png',
+])
+
+const bluaccessImages = gallery('bluaccess', [
+  'home.png',
+  'login.png',
+  'access-history.png',
+  'notifications.png',
+  'hand-calibration.png',
+  'card-calibration.png',
+])
+
+const biogoImages = gallery('biogo', [
+  'home.png',
+  'login.png',
+  'modal.png',
+  'add-user.png',
+  'users-list.png',
+  'enroll.png',
+  'verification.png',
+])
+
+const ekycImages = gallery('ekyc', [
+  'onboarding.png',
+  'nfc.png',
+  'scan-id.png',
+  'face-capture.png',
+  'results-document.png',
+  'results-details.png',
+])
+
+const rapididImages = gallery('rapidid', ['home.png'])
+
+const livenessImages = gallery('liveness', [
+  'personal-data.png',
+  'intro.png',
+  'capture.png',
+  'captured.png',
+  'captured-set.png',
+  'success.png',
+])
+
+const biowave2faImages = gallery('biowave-2fa', [
+  'verify-card.png',
+  'verify-fingerprint.png',
+  'card-data.png',
+  'files.png',
+  'create-file.png',
+])
+
+const alreemImages = gallery('alreem', [
+  'budget.png',
+  'choose-account.png',
+  'transfer-success.png',
+  'create-budget.png',
+  'cards.png',
+  'profile.png',
+  'analytics.png',
+  'settings.png',
+  'support.png',
+  'atm-locator.png',
+])
+
+const forallImages = gallery('forall', [
+  'login.webp',
+  'services.webp',
+  'business-gate.webp',
+  'chat.webp',
+  'profile.webp',
+])
+
+const alnoorImages = gallery('alnoor', [
+  'home.png',
+  'sign-in.png',
+  'wallet.png',
+  'route.png',
+  'profile.png',
+])
+
+const greenzoneImages = gallery('greenzone', [
+  'home.png',
+  'enroll.png',
+  'enroll-filled.png',
+  'settings.png',
+  'sync.png',
+])
+
+const aranaIdentityImages = gallery('arana-identity', [
+  'details-active.png',
+  'details-rejected.png',
+  'splash.png',
+])
+
+const apppulseImages = gallery('apppulse', [
+  'dashboard.png',
+  'applications.png',
+  'releases.png',
+  'team.png',
+])
+
+const devevalImages = gallery('deveval', [
+  'matrix.png',
+  'member.png',
+  'evaluate.png',
+])
 
 export const profile = {
   fullName: 'Saeed Ahmed Mohamed',
@@ -55,6 +181,7 @@ export const projects = [
     gradient: "from-cyan-400 to-blue-500",
     shadowColor: "rgba(6, 182, 212, 0.3)",
     company: "Arana Security",
+    images: biowaveImages,
     links: {
       playStore:
         "https://play.google.com/store/apps/details?id=com.aranasecurity.biowave",
@@ -72,10 +199,11 @@ export const projects = [
     gradient: "from-emerald-400 to-teal-500",
     shadowColor: "rgba(16, 185, 129, 0.3)",
     company: "Arana Security",
+    images: bioboxImages,
   },
   {
     id: 10,
-    name: "BlueAccess",
+    name: "BluAccess",
     description:
       "BLE facility access control: user app for nearby gates plus an admin app to manage doors, rules, and time zones. Built with Flutter and flutter_blue_plus for real-time board communication.",
     icon: KeyRound,
@@ -84,6 +212,7 @@ export const projects = [
     gradient: "from-blue-400 to-indigo-500",
     shadowColor: "rgba(59, 130, 246, 0.3)",
     company: "Arana Security",
+    images: bluaccessImages,
   },
   {
     id: 11,
@@ -96,6 +225,7 @@ export const projects = [
     gradient: "from-red-400 to-orange-500",
     shadowColor: "rgba(239, 68, 68, 0.3)",
     company: "Arana Security",
+    images: biogoImages,
   },
   {
     id: 1,
@@ -108,32 +238,10 @@ export const projects = [
     gradient: "from-violet-400 to-purple-500",
     shadowColor: "rgba(139, 92, 246, 0.3)",
     company: "Arana Security",
+    images: ekycImages,
     links: aranaStores,
   },
-  {
-    id: 5,
-    name: "RapidID",
-    description:
-      "On-the-spot fingerprint identification for field officers. FBI PIV and FAP 30 certified sensor with advanced TFT scanning so identities can be verified in seconds in rugged, portable deployments.",
-    icon: ScanLine,
-    category: "Biometrics",
-    tech: ["Android", "Kotlin", "FBI PIV", "FAP 30"],
-    gradient: "from-sky-400 to-blue-500",
-    shadowColor: "rgba(14, 165, 233, 0.3)",
-    company: "Arana Security",
-  },
-  {
-    id: 6,
-    name: "Lite RapidID",
-    description:
-      "High-speed OCR for identity documents: MRZ recognition, passports and national IDs, image pre-processing, and automated data entry with secure parsing for cross-platform integration.",
-    icon: FileText,
-    category: "Identity",
-    tech: ["OCR", "MRZ", "ONNX", "Android"],
-    gradient: "from-lime-400 to-emerald-500",
-    shadowColor: "rgba(132, 204, 22, 0.3)",
-    company: "Arana Security",
-  },
+
   {
     id: 7,
     name: "Liveness Check",
@@ -145,6 +253,7 @@ export const projects = [
     gradient: "from-teal-400 to-cyan-500",
     shadowColor: "rgba(20, 184, 166, 0.3)",
     company: "Arana Security",
+    images: livenessImages,
   },
   {
     id: 8,
@@ -157,18 +266,33 @@ export const projects = [
     gradient: "from-orange-400 to-red-500",
     shadowColor: "rgba(249, 115, 22, 0.3)",
     company: "Arana Security",
+    images: biowave2faImages,
   },
   {
-    id: 9,
-    name: "SmartEncode",
+    id: 20,
+    name: "DevEval AI",
     description:
-      "Card issuance tool that reads NFC ID cards, verifies fingerprints stored on chip, and encodes MIFARE data synced from SQL, MySQL, or Oracle — without writing custom SDK glue for each customer.",
-    icon: CreditCard,
-    category: "Hardware",
-    tech: ["Android", "NFC", "MIFARE", "SQL"],
-    gradient: "from-amber-400 to-orange-500",
-    shadowColor: "rgba(245, 158, 11, 0.3)",
-    company: "Arana Security",
+      "AI dashboard for engineering managers: role-specific competency matrices, Gemini-powered gap analysis, and weekly observation logs that adjust scores and mentorship plans. Recharts growth curves plus Firebase Auth and Firestore for team history.",
+    icon: BrainCircuit,
+    category: "Enterprise",
+    tech: ["React", "Firebase", "Gemini", "Recharts"],
+    gradient: "from-violet-400 to-indigo-500",
+    shadowColor: "rgba(139, 92, 246, 0.35)",
+    company: "Freelance",
+    images: devevalImages,
+  },
+  {
+    id: 19,
+    name: "AppPulse",
+    description:
+      "Engineering and release command center for managers, product owners, and tech leads. Orchestrates software lifecycles across web, mobile, backend, and infrastructure — timeline-based releases, time-to-production analytics, and cross-functional team mapping in a vanilla JS SPA with Chart.js and dark/light mode.",
+    icon: LayoutDashboard,
+    category: "Enterprise",
+    tech: ["JavaScript", "Tailwind CSS", "Chart.js"],
+    gradient: "from-emerald-400 to-cyan-500",
+    shadowColor: "rgba(16, 185, 129, 0.35)",
+    company: "Freelance",
+    images: apppulseImages,
   },
   {
     id: 4,
@@ -181,31 +305,7 @@ export const projects = [
     gradient: "from-green-400 to-emerald-500",
     shadowColor: "rgba(34, 197, 94, 0.3)",
     company: "Arana Security",
-  },
-
-  {
-    id: 12,
-    name: "Dynamic Card Builder",
-    description:
-      "Configurable card-issuance platform: dynamic data-entry forms, file/database verification, multi-step authorization, audit trail, and secure printing across contact, contactless, and dual-interface cards.",
-    icon: Files,
-    category: "Identity",
-    tech: ["Flutter", "Bloc", "PDF", "REST API"],
-    gradient: "from-fuchsia-400 to-pink-500",
-    shadowColor: "rgba(217, 70, 239, 0.3)",
-    company: "Arana Security",
-  },
-  {
-    id: 13,
-    name: "Iraq Enroll",
-    description:
-      "Jetpack Compose enrollment client for slap fingerprint capture (thumbs and index fingers), local user records, and dashboard workflows on Arana biometric tablets.",
-    icon: Users,
-    category: "Biometrics",
-    tech: ["Kotlin", "Jetpack Compose", "Morpho", "Room"],
-    gradient: "from-rose-400 to-pink-500",
-    shadowColor: "rgba(244, 63, 94, 0.3)",
-    company: "Arana Security",
+    images: greenzoneImages,
   },
   {
     id: 14,
@@ -218,6 +318,7 @@ export const projects = [
     gradient: "from-amber-400 to-yellow-500",
     shadowColor: "rgba(245, 158, 11, 0.3)",
     company: "Arana Security",
+    images: alnoorImages,
   },
   {
     id: 15,
@@ -230,6 +331,7 @@ export const projects = [
     gradient: "from-indigo-400 to-violet-500",
     shadowColor: "rgba(99, 102, 241, 0.3)",
     company: "Arana Security",
+    images: alreemImages,
   },
   {
     id: 16,
@@ -242,6 +344,7 @@ export const projects = [
     gradient: "from-slate-400 to-cyan-500",
     shadowColor: "rgba(100, 116, 139, 0.3)",
     company: "Arana Security",
+    images: aranaIdentityImages,
   },
   {
     id: 17,
@@ -254,6 +357,7 @@ export const projects = [
     gradient: "from-pink-400 to-rose-500",
     shadowColor: "rgba(244, 63, 94, 0.3)",
     company: "ForAll.FA",
+    images: forallImages,
     links: {
       playStore:
         "https://play.google.com/store/apps/dev?id=7695761114305611998",
@@ -261,23 +365,24 @@ export const projects = [
     },
   },
   {
-    id: 18,
-    name: "Smart Breeder",
+    id: 5,
+    name: "RapidID",
     description:
-      "Livestock management app covering barns, feeds, medical tracking, and statistics — clean architecture with a polished, animated UX for farm operators.",
-    icon: PawPrint,
-    category: "Enterprise",
-    tech: ["Flutter", "Dart", "Clean Architecture"],
-    gradient: "from-green-400 to-lime-500",
-    shadowColor: "rgba(74, 222, 128, 0.3)",
-    company: "Freelance",
+      "Field identification for officers: FBI PIV and FAP 30 fingerprint matching plus Lite RapidID OCR for passports and national IDs — MRZ recognition, image pre-processing, and automated data entry. Rugged portable capture with secure parsing for cross-platform integration.",
+    icon: ScanLine,
+    category: "Biometrics",
+    tech: ["Android", "Kotlin", "FBI PIV", "OCR", "ONNX"],
+    gradient: "from-sky-400 to-blue-500",
+    shadowColor: "rgba(14, 165, 233, 0.3)",
+    company: "Arana Security",
+    images: rapididImages,
   },
 ];
 
 export const categories = ['All', 'Biometrics', 'Hardware', 'Identity', 'Enterprise']
 
 export const stats = [
-  { label: 'Apps Delivered', value: '18+' },
+  { label: 'Apps Delivered', value: '15+' },
   { label: 'Years Experience', value: '6+' },
   { label: 'Technologies', value: '25+' },
   { label: 'Clients Served', value: '10+' },
@@ -341,8 +446,8 @@ export const experience = [
     location: 'Remote',
     current: true,
     highlights: [
-      'Architected Smart Breeder for livestock management: barns, feeds, medical tracking, and statistics',
-      'Delivered smooth UX with animations and clean architecture',
+      'Built DevEval AI, a Gemini-powered engineering matrix that turns skill ratings and weekly logs into scores, gap analysis, and mentorship plans',
+      'Built AppPulse, an engineering release command center: lifecycle analytics, stage tracking, and cross-functional resource mapping',
     ],
   },
 ]

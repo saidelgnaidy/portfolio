@@ -11,9 +11,9 @@ export default function Hero() {
       className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden"
     >
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute -top-40 -left-40 w-80 h-80 bg-cyan-500/20 rounded-full blur-[100px] animate-float" />
-        <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-violet-500/20 rounded-full blur-[100px] animate-float-delayed" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-[120px] animate-float-slow" />
+        <div className="ambient-orb absolute -top-40 -left-40 w-80 h-80 bg-cyan-500/20 rounded-full blur-[100px] animate-float" />
+        <div className="ambient-orb absolute -bottom-40 -right-40 w-96 h-96 bg-violet-500/20 rounded-full blur-[100px] animate-float-delayed" />
+        <div className="ambient-orb absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-[120px] animate-float-slow" />
       </div>
 
       <div className="absolute inset-0 grid-pattern opacity-50" />
@@ -38,7 +38,7 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight mb-6"
         >
-          <span className="text-white">Hi, I'm </span>
+          <span className="text-fg">Hi, I'm </span>
           <span className="gradient-text">{profile.shortName}</span>
         </motion.h1>
 
@@ -78,7 +78,7 @@ export default function Hero() {
             href={cvPath}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 border border-dark-600 text-dark-200 font-semibold rounded-xl hover:border-dark-400 hover:text-white hover:bg-white/5 transition-all duration-300 hover:-translate-y-1"
+            className="inline-flex items-center gap-2 px-8 py-4 border border-dark-600 text-dark-200 font-semibold rounded-xl hover:border-dark-400 hover:text-fg hover:bg-white/5 transition-all duration-300 hover:-translate-y-1"
           >
             <FileDown size={18} />
             Download CV
@@ -101,7 +101,7 @@ export default function Hero() {
               href={social.href}
               target={social.external ? '_blank' : undefined}
               rel={social.external ? 'noopener noreferrer' : undefined}
-              className="p-3 rounded-xl border border-dark-700 text-dark-400 hover:text-white hover:border-dark-500 hover:bg-white/5 transition-all duration-300"
+              className="p-3 rounded-xl border border-dark-700 text-dark-400 hover:text-fg hover:border-dark-500 hover:bg-white/5 transition-all duration-300"
               whileHover={{ y: -3, scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               aria-label={social.label}

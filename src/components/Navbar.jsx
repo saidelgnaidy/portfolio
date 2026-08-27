@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X } from 'lucide-react'
+import { Menu, Moon, Sun, X } from 'lucide-react'
+import { useTheme } from '../hooks/useTheme'
 
 const navLinks = [
   { name: 'Home', href: '#home' },
@@ -12,12 +13,24 @@ const navLinks = [
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const { theme, toggleTheme } = useTheme()
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50)
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  const themeButton = (
+    <button
+      type="button"
+      onClick={toggleTheme}
+      className="p-2 rounded-lg text-dark-300 hover:text-fg hover:bg-white/5 transition-colors"
+      aria-label={theme === 'light' ? 'Switch to dark theme' : 'Switch to light theme'}
+    >
+      {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
+    </button>
+  )
 
   return (
     <motion.nav
@@ -26,7 +39,7 @@ export default function Navbar() {
       transition={{ duration: 0.6, ease: 'easeOut' }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? 'bg-dark-950/80 backdrop-blur-xl border-b border-white/5 shadow-lg shadow-black/20'
+          ? 'bg-page/80 backdrop-blur-xl border-b border-white/5 shadow-lg shadow-black/20'
           : 'bg-transparent'
       }`}
     >
@@ -39,7 +52,7 @@ export default function Navbar() {
             whileTap={{ scale: 0.95 }}
           >
             <span className="text-cyan-400">&lt;</span>
-            <span className="text-white">Saeed</span>
+            <span className="text-fg">Saeed</span>
             <span className="text-violet-400">/&gt;</span>
           </motion.a>
 
@@ -48,16 +61,17 @@ export default function Navbar() {
               <motion.a
                 key={link.name}
                 href={link.href}
-                className="px-4 py-2 text-sm text-dark-300 hover:text-white rounded-lg hover:bg-white/5 transition-all duration-300"
+                className="px-4 py-2 text-sm text-dark-300 hover:text-fg rounded-lg hover:bg-white/5 transition-all duration-300"
                 whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
                 {link.name}
               </motion.a>
             ))}
+            {themeButton}
             <motion.a
               href="#contact"
-              className="ml-4 px-5 py-2 text-sm font-medium text-white bg-gradient-to-r from-cyan-500 to-violet-500 rounded-lg hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300"
+              className="ml-2 px-5 py-2 text-sm font-medium text-white bg-gradient-to-r from-cyan-500 to-violet-500 rounded-lg hover:shadow-lg hover:shadow-cyan-500/20 transition-all duration-300"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -65,16 +79,19 @@ export default function Navbar() {
             </motion.a>
           </div>
 
-          <button
-            type="button"
-            className="md:hidden p-2 text-dark-300 hover:text-white transition-colors"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={isMobileMenuOpen}
-            aria-controls="mobile-menu"
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="md:hidden flex items-center gap-1">
+            {themeButton}
+            <button
+              type="button"
+              className="p-2 text-dark-300 hover:text-fg transition-colors"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-menu"
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -86,14 +103,14 @@ export default function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-dark-900/95 backdrop-blur-xl border-b border-white/5 overflow-hidden"
+            className="md:hidden bg-page/95 backdrop-blur-xl border-b border-white/5 overflow-hidden"
           >
             <div className="px-4 py-4 space-y-1">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
-                  className="block px-4 py-3 text-dark-300 hover:text-white hover:bg-white/5 rounded-lg transition-all"
+                  className="block px-4 py-3 text-dark-300 hover:text-fg hover:bg-white/5 rounded-lg transition-all"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.name}

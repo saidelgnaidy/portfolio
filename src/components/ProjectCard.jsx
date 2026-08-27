@@ -1,108 +1,85 @@
-import { motion } from 'framer-motion'
-
-const PlayStoreIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4" aria-hidden="true">
-    <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.3 2.3-8.636-8.632z" />
-  </svg>
-)
-
-const AppStoreIcon = () => (
-  <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4" aria-hidden="true">
-    <path d="M11.624 7.222c-.876 0-2.232-.996-3.66-.96-1.884.024-3.612 1.092-4.584 2.784-1.956 3.396-.504 8.412 1.404 11.172.936 1.344 2.04 2.856 3.504 2.808 1.404-.06 1.932-.912 3.636-.912 1.692 0 2.172.912 3.66.876 1.512-.024 2.472-1.368 3.396-2.724 1.068-1.56 1.512-3.072 1.536-3.156-.036-.012-2.94-1.128-2.976-4.488-.024-2.808 2.292-4.152 2.4-4.212-1.308-1.944-3.348-2.16-4.068-2.22-1.86-.156-3.372 1.032-4.248 1.032zm3.12-2.832c.78-.936 1.296-2.244 1.152-3.54-1.116.048-2.46.744-3.264 1.68-.72.828-1.344 2.16-1.176 3.432 1.236.096 2.508-.636 3.288-1.572z" />
-  </svg>
-)
-
-export default function ProjectCard({ project, index }) {
+function ProjectCover({ project }) {
   const Icon = project.icon
+  const images = project.images || []
+
+  if (images.length === 0) {
+    return (
+      <div className={`relative h-44 overflow-hidden bg-gradient-to-br ${project.gradient}`}>
+        <div className="absolute inset-0 bg-ink/25" />
+        <div className="relative flex h-full items-center justify-center">
+          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/15 ring-1 ring-white/20">
+            <Icon className="text-white" size={32} />
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   return (
-    <motion.div
-      layout
-      initial={{ opacity: 0, y: 30, scale: 0.95 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.9 }}
-      transition={{ duration: 0.4, delay: Math.min(index * 0.04, 0.35) }}
-      whileHover={{ y: -8, transition: { duration: 0.3 } }}
-      className="group relative"
-    >
-      <div className="glass-card gradient-border rounded-2xl p-6 h-full flex flex-col transition-all duration-500 group-hover:shadow-xl">
+    <div className="relative h-48 overflow-hidden bg-dark-800">
+      <img
+        src={images[0]}
+        alt=""
+        className="h-full w-full object-cover object-top"
+      />
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+      {images.length > 1 && (
+        <span className="absolute bottom-2 right-2 rounded-full bg-ink/70 px-2 py-0.5 text-[11px] font-medium text-white">
+          {images.length} photos
+        </span>
+      )}
+    </div>
+  )
+}
+
+export default function ProjectCard({ project, onOpen }) {
+  return (
+    <article className="group relative h-full">
+      <button
+        type="button"
+        onClick={() => onOpen(project)}
+        className="glass-card gradient-border flex h-full w-full cursor-pointer flex-col overflow-hidden rounded-2xl text-left transition-transform duration-300 group-hover:-translate-y-1 group-hover:shadow-xl"
+      >
         <div
-          className="absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl -z-10"
+          className="pointer-events-none absolute -inset-px -z-10 rounded-2xl opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100"
           style={{
             background: `radial-gradient(circle at center, ${project.shadowColor}, transparent 70%)`,
           }}
         />
 
-        <div className="flex items-start justify-between mb-5">
-          <div
-            className={`w-14 h-14 rounded-xl bg-gradient-to-br ${project.gradient} p-0.5`}
-          >
-            <div className="w-full h-full rounded-[10px] bg-dark-900 flex items-center justify-center">
-              <Icon className="text-white" size={24} />
-            </div>
-          </div>
-          {project.company && (
-            <span className="px-2.5 py-1 text-[10px] font-mono font-medium rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
-              {project.company}
+        <ProjectCover project={project} />
+
+        <div className="flex flex-1 flex-col p-6">
+          <div className="mb-3 flex items-start justify-between gap-3">
+            <span className="inline-flex self-start rounded-full border border-dark-700/50 bg-dark-800 px-3 py-1 text-xs font-medium text-dark-300">
+              {project.category}
             </span>
-          )}
-        </div>
-
-        <span className="inline-flex self-start px-3 py-1 text-xs font-medium rounded-full bg-dark-800 text-dark-300 border border-dark-700/50 mb-3">
-          {project.category}
-        </span>
-
-        <h3 className="text-xl font-bold text-white mb-2 group-hover:gradient-text transition-all duration-300">
-          {project.name}
-        </h3>
-        <p className="text-sm text-dark-400 leading-relaxed mb-5 flex-grow">
-          {project.description}
-        </p>
-
-        <div className="flex flex-wrap gap-2 mb-4">
-          {project.tech.map((tech) => (
-            <span
-              key={tech}
-              className="px-2.5 py-1 text-xs font-mono rounded-md bg-dark-800/80 text-dark-300 border border-dark-700/30"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
-
-        {project.links && (
-          <div className="flex items-center gap-2 pt-3 border-t border-dark-700/30">
-            {project.links.playStore && (
-              <a
-                href={project.links.playStore}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${project.name} on Play Store`}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-dark-800 text-dark-300 hover:text-white hover:bg-dark-700 transition-all duration-300"
-              >
-                <PlayStoreIcon />
-                Play Store
-              </a>
-            )}
-            {project.links.appStore && (
-              <a
-                href={project.links.appStore}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${project.name} on App Store`}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg bg-dark-800 text-dark-300 hover:text-white hover:bg-dark-700 transition-all duration-300"
-              >
-                <AppStoreIcon />
-                App Store
-              </a>
+            {project.company && (
+              <span className="rounded-full border border-cyan-500/20 bg-cyan-500/10 px-2.5 py-1 text-[10px] font-mono font-medium text-cyan-400">
+                {project.company}
+              </span>
             )}
           </div>
-        )}
 
-        <div
-          className={`absolute bottom-0 left-6 right-6 h-px bg-gradient-to-r ${project.gradient} opacity-0 group-hover:opacity-40 transition-opacity duration-500`}
-        />
-      </div>
-    </motion.div>
+          <h3 className="mb-2 text-xl font-bold text-fg transition-colors duration-300 group-hover:text-cyan-500">
+            {project.name}
+          </h3>
+          <p className="mb-5 flex-grow text-sm leading-relaxed text-dark-400">
+            {project.description}
+          </p>
+
+          <div className="flex flex-wrap gap-2">
+            {project.tech.map((tech) => (
+              <span
+                key={tech}
+                className="rounded-md border border-dark-700/30 bg-dark-800/80 px-2.5 py-1 font-mono text-xs text-dark-300"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+      </button>
+    </article>
   )
 }

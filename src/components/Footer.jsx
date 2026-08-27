@@ -23,7 +23,7 @@ export default function Footer() {
               target={social.external ? '_blank' : undefined}
               rel={social.external ? 'noopener noreferrer' : undefined}
               aria-label={social.label}
-              className="text-dark-500 hover:text-white transition-colors duration-300"
+              className="text-dark-500 hover:text-fg transition-colors duration-300"
             >
               <social.icon size={18} />
             </a>

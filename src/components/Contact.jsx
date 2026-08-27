@@ -70,7 +70,7 @@ export default function Contact() {
           <p className="text-sm font-mono text-cyan-400 tracking-widest uppercase mb-3">
             Contact
           </p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-fg mb-4">
             Let's{' '}
             <span className="gradient-text">Work Together</span>
           </h2>
@@ -95,25 +95,25 @@ export default function Contact() {
                   className="glass-card gradient-border rounded-2xl p-5 flex items-center gap-4 group hover:scale-[1.02] transition-all duration-300 block h-full"
                 >
                   <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${contact.color} p-0.5 flex-shrink-0`}>
-                    <div className="w-full h-full rounded-[10px] bg-dark-900 flex items-center justify-center">
+                    <div className="w-full h-full rounded-[10px] bg-ink flex items-center justify-center">
                       <contact.icon className="text-white" size={18} />
                     </div>
                   </div>
                   <div className="min-w-0">
                     <p className="text-xs text-dark-400 font-medium uppercase tracking-wider">{contact.label}</p>
-                    <p className="text-white text-sm font-medium group-hover:text-cyan-300 transition-colors truncate">{contact.value}</p>
+                    <p className="text-fg text-sm font-medium group-hover:text-cyan-300 transition-colors truncate">{contact.value}</p>
                   </div>
                 </a>
               ) : (
                 <div className="glass-card gradient-border rounded-2xl p-5 flex items-center gap-4 h-full">
                   <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${contact.color} p-0.5 flex-shrink-0`}>
-                    <div className="w-full h-full rounded-[10px] bg-dark-900 flex items-center justify-center">
+                    <div className="w-full h-full rounded-[10px] bg-ink flex items-center justify-center">
                       <contact.icon className="text-white" size={18} />
                     </div>
                   </div>
                   <div>
                     <p className="text-xs text-dark-400 font-medium uppercase tracking-wider">{contact.label}</p>
-                    <p className="text-white text-sm font-medium">{contact.value}</p>
+                    <p className="text-fg text-sm font-medium">{contact.value}</p>
                   </div>
                 </div>
               )}

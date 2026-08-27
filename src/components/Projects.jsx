@@ -1,7 +1,8 @@
 import { useState, useRef } from 'react'
-import { motion, useInView, AnimatePresence } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import { projects, categories } from '../data/projects'
 import ProjectCard from './ProjectCard'
+import ProjectDialog from './ProjectDialog'
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },
@@ -10,8 +11,9 @@ const fadeInUp = {
 
 export default function Projects() {
   const [activeCategory, setActiveCategory] = useState('All')
+  const [selectedProject, setSelectedProject] = useState(null)
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
+  const isInView = useInView(ref, { once: true, margin: '-80px' })
 
   const filteredProjects =
     activeCategory === 'All'
@@ -31,13 +33,13 @@ export default function Projects() {
           <p className="text-sm font-mono text-cyan-400 tracking-widest uppercase mb-3">
             Portfolio
           </p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-fg mb-4">
             Featured{' '}
             <span className="gradient-text">Projects</span>
           </h2>
           <p className="text-dark-300 max-w-2xl mx-auto text-lg">
             {projects.length} production apps spanning biometric security, hardware
-            integration, identity platforms, and enterprise products.
+            integration, identity platforms, and release operations.
           </p>
         </motion.div>
 
@@ -60,7 +62,7 @@ export default function Projects() {
               className={`px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 ${
                 activeCategory === category
                   ? 'bg-gradient-to-r from-cyan-500 to-violet-500 text-white shadow-lg shadow-cyan-500/20'
-                  : 'bg-dark-800/50 text-dark-300 hover:text-white hover:bg-dark-700/50 border border-dark-700/50'
+                  : 'bg-dark-800/50 text-dark-300 hover:text-fg hover:bg-dark-700/50 border border-dark-700/50'
               }`}
             >
               {category}
@@ -75,17 +77,23 @@ export default function Projects() {
           ))}
         </motion.div>
 
-        <motion.div
-          layout
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
-        >
-          <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project, index) => (
-              <ProjectCard key={project.id} project={project} index={index} />
-            ))}
-          </AnimatePresence>
-        </motion.div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {filteredProjects.map((project) => (
+            <ProjectCard
+              key={project.id}
+              project={project}
+              onOpen={setSelectedProject}
+            />
+          ))}
+        </div>
       </div>
+
+      {selectedProject && (
+        <ProjectDialog
+          project={selectedProject}
+          onClose={() => setSelectedProject(null)}
+        />
+      )}
     </section>
   )
 }

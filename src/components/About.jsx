@@ -47,7 +47,7 @@ export default function About() {
           className="text-center mb-16"
         >
           <p className="text-sm font-mono text-cyan-400 tracking-widest uppercase mb-3">About Me</p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-fg mb-4">
             Turning Ideas into{' '}
             <span className="gradient-text">Powerful Apps</span>
           </h2>
@@ -93,7 +93,7 @@ export default function About() {
               <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500/10 to-violet-500/10 flex items-center justify-center mb-4 group-hover:from-cyan-500/20 group-hover:to-violet-500/20 transition-all duration-300">
                 <item.icon className="text-cyan-400" size={24} />
               </div>
-              <h3 className="text-white font-semibold mb-2">{item.title}</h3>
+              <h3 className="text-fg font-semibold mb-2">{item.title}</h3>
               <p className="text-sm text-dark-400 leading-relaxed">{item.description}</p>
             </motion.div>
           ))}
@@ -107,7 +107,7 @@ export default function About() {
         >
           <div className="flex items-center gap-3 mb-8">
             <Briefcase className="text-cyan-400" size={24} />
-            <h3 className="text-xl font-bold text-white">Experience</h3>
+            <h3 className="text-xl font-bold text-fg">Experience</h3>
           </div>
           <div className="relative">
             <div className="absolute left-[7px] top-2 bottom-2 w-px bg-gradient-to-b from-cyan-500/50 via-violet-500/30 to-transparent" />
@@ -129,7 +129,7 @@ export default function About() {
 
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-2">
                     <div>
-                      <h4 className="text-white font-semibold text-lg">{exp.company}</h4>
+                      <h4 className="text-fg font-semibold text-lg">{exp.company}</h4>
                       <p className="text-cyan-400 text-sm font-medium">{exp.role}</p>
                     </div>
                     <div className="flex items-center gap-3 text-sm text-dark-400">
@@ -157,7 +157,7 @@ export default function About() {
             <div>
               <div className="flex items-center gap-3 mb-3">
                 <GraduationCap className="text-violet-400" size={20} />
-                <h4 className="text-white font-semibold">Education</h4>
+                <h4 className="text-fg font-semibold">Education</h4>
               </div>
               <p className="text-dark-300 text-sm pl-8">
                 <span className="font-medium text-dark-200">Faculty of Computer and Information Systems</span>
@@ -170,7 +170,7 @@ export default function About() {
             <div>
               <div className="flex items-center gap-3 mb-3">
                 <Languages className="text-cyan-400" size={20} />
-                <h4 className="text-white font-semibold">Languages</h4>
+                <h4 className="text-fg font-semibold">Languages</h4>
               </div>
               <p className="text-dark-300 text-sm pl-8">
                 {profile.languages.map((lang, i) => (
@@ -193,12 +193,12 @@ export default function About() {
           transition={{ duration: 0.6, delay: 0.7 }}
           className="glass-card rounded-2xl p-8"
         >
-          <h3 className="text-xl font-bold text-white mb-6">Technical Skills</h3>
+          <h3 className="text-xl font-bold text-fg mb-6">Technical Skills</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {skills.map((skill, index) => (
               <div key={skill.name} className="group">
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-sm font-medium text-dark-200 group-hover:text-white transition-colors">
+                  <span className="text-sm font-medium text-dark-200 group-hover:text-fg transition-colors">
                     {skill.name}
                   </span>
                   <span className="text-xs font-mono text-dark-400">{skill.level}%</span>
