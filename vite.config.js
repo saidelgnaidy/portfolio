@@ -3,5 +3,5 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/saeed-a7med-portfolio/',
+  base: '/saeed-portfolio/',
 })

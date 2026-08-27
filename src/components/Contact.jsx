@@ -13,15 +13,15 @@ const contactLinks = [
   {
     icon: Github,
     label: 'GitHub',
-    value: 'github.com/saeed-a7med',
-    href: 'https://github.com/saeed-a7med',
+    value: 'github.com/saidelgnaidy',
+    href: 'https://github.com/saidelgnaidy',
     color: 'from-gray-400 to-gray-500',
   },
   {
     icon: Linkedin,
     label: 'LinkedIn',
-    value: 'linkedin.com/in/saeed-a7med',
-    href: 'https://linkedin.com/in/saeed-a7med',
+    value: 'linkedin.com/in/saidelgnaidy',
+    href: 'https://linkedin.com/in/saidelgnaidy',
     color: 'from-blue-400 to-indigo-500',
   },
   {
